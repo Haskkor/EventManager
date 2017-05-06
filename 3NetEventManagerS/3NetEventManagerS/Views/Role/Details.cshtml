@@ -1,0 +1,18 @@
+@model _3NetEventManagerS.Models.Role
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Role</legend>
+
+    <div class="display-label">Name</div>
+    <div class="display-field">@Model.Name</div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.RoleId })
+</p>

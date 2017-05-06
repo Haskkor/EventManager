@@ -1,0 +1,25 @@
+﻿@model _3NetEventManagerS.Models.User
+
+@{
+    ViewBag.Title = "FindOneFriend";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Find A Friend</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Find</legend>
+        <div class="editor-label">
+            Enter the Firstname, Lastname or Nickname of the person you're looking for :
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(u => u.NickName, new { required = "required" })
+            @Html.ValidationMessageFor(u => u.NickName)
+        </div>
+        <p>
+            <input type="submit" value="Find" />
+        </p>
+    </fieldset>
+}

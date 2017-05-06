@@ -1,0 +1,45 @@
+@model _3NetEventManagerS.Models.User
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.FirstName)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.FirstName)
+    @Html.ValidationMessageFor(model => model.FirstName)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.LastName)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.LastName)
+    @Html.ValidationMessageFor(model => model.LastName)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Password)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Password)
+    @Html.ValidationMessageFor(model => model.Password)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.NickName)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.NickName)
+    @Html.ValidationMessageFor(model => model.NickName)
+</div>
+
+<div class="editor-label">
+    Role
+</div>
+<div class="editor-field">
+    @Html.DropDownListFor(model => model.RoleId, ((IEnumerable<_3NetEventManagerS.Models.Role>)ViewBag.PossibleRole).Select(option => new SelectListItem {
+        Text = (option == null ? "None" : option.Name), 
+        Value = option.RoleId.ToString(),
+        Selected = (Model != null) && (option.RoleId == Model.RoleId)
+    }), "Choose...")
+    @Html.ValidationMessageFor(model => model.RoleId)
+</div>

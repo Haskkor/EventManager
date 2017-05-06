@@ -1,0 +1,40 @@
+@model _3NetEventManagerS.Models.Contribution
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Name)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Name)
+    @Html.ValidationMessageFor(model => model.Name)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Quantity)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Quantity)
+    @Html.ValidationMessageFor(model => model.Quantity)
+</div>
+
+<div class="editor-label">
+    ContributionType
+</div>
+<div class="editor-field">
+    @Html.DropDownListFor(model => model.ContributionTypeId, ((IEnumerable<_3NetEventManagerS.Models.ContributionType>)ViewBag.PossibleContributionType).Select(option => new SelectListItem {
+        Text = (option == null ? "None" : option.Name), 
+        Value = option.ContributionTypeId.ToString(),
+        Selected = (Model != null) && (option.ContributionTypeId == Model.ContributionTypeId)
+    }), "Choose...")
+    @Html.ValidationMessageFor(model => model.ContributionTypeId)
+</div>
+<div class="editor-label">
+    Event
+</div>
+<div class="editor-field">
+    @Html.DropDownListFor(model => model.EventId, ((IEnumerable<_3NetEventManagerS.Models.Event>)ViewBag.PossibleEvent).Select(option => new SelectListItem {
+        Text = (option == null ? "None" : option.Name), 
+        Value = option.EventId.ToString(),
+        Selected = (Model != null) && (option.EventId == Model.EventId)
+    }), "Choose...")
+    @Html.ValidationMessageFor(model => model.EventId)
+</div>

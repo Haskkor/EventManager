@@ -1,0 +1,98 @@
+@using System.Globalization
+@using _3NetEventManagerS.Models
+@model IEnumerable<Event>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th></th>
+        <th>
+            ID
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Address
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Date
+        </th>
+        <th>
+            Time
+        </th>
+        <th>
+            GuestsList
+        </th>
+        <th>
+            CreatorId
+        </th>
+        <th>
+            EventType
+        </th>
+        <th>
+            EventStatus
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EventId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EventId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EventId })
+        </td>
+        <td>
+			@item.EventId
+        </td>
+        <td>
+			@item.Name
+        </td>
+        <td>
+			@item.Address
+        </td>
+        <td>
+			@item.Description
+        </td>
+        <td>
+			@String.Format("{0:d}", item.Date)
+        </td>
+        <td>
+			@item.Time
+        </td>
+        <td>
+            @(item.GuestsList == null ? "None" : item.GuestsList.Count.ToString(CultureInfo.InvariantCulture))
+        </td>
+        <td>
+            @item.CreatorId
+        </td>
+        @{
+            var eventTypeRep = new EventTypeRepository(); 
+            string eventTypeName = eventTypeRep.Find(item.EventTypeId).Name;
+            var eventStatusRep = new EventStatusRepository();
+            string eventStatusName = eventStatusRep.Find(item.EventStatusId).Name;
+        }
+        <td>
+            @eventTypeName
+        </td>
+        <td>
+            @eventStatusName
+        </td>
+    </tr>
+}
+
+</table>
+
+

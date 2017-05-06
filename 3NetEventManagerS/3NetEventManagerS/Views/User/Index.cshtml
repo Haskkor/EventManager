@@ -1,0 +1,78 @@
+@using System.Globalization
+@using _3NetEventManagerS.Models
+@model IEnumerable<User>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th></th>
+        <th>
+            ID
+        </th>
+        <th>
+            FirstName
+        </th>
+        <th>
+            LastName
+        </th>
+        <th>
+            Password
+        </th>
+        <th>
+            NickName
+        </th>
+        <th>
+            FriendsListId
+        </th>
+        <th>
+            Role
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.UserId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.UserId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.UserId })
+        </td>
+        <td>
+            @item.UserId
+        </td>
+        <td>
+			@item.FirstName
+        </td>
+        <td>
+			@item.LastName
+        </td>
+        <td>
+			@item.Password
+        </td>
+        <td>
+			@item.NickName
+        </td>
+        <td>
+            @(item.FriendsListId == null ? "None" : item.FriendsListId.Count.ToString(CultureInfo.InvariantCulture))
+        </td>
+        @{
+            var roleRep = new RoleRepository(); 
+            string roleName = roleRep.Find(item.RoleId).Name;
+        }
+        <td>
+            @roleName
+        </td>
+    </tr>
+}
+
+</table>
+
+

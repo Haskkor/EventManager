@@ -1,0 +1,22 @@
+@model _3NetEventManagerS.Models.EventType
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>EventType</legend>
+
+        @Html.HiddenFor(model => model.EventTypeId)
+		@Html.Partial("_CreateOrEdit", Model)
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}

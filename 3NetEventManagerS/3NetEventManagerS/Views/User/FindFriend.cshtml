@@ -1,0 +1,43 @@
+﻿@model List<_3NetEventManagerS.Models.User>
+
+@{
+    ViewBag.Title = "FindFriend";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Find Friends</h2>
+
+<h4>
+    @Html.ActionLink("Look for a friend", "FindOneFriend", "User")
+</h4>
+
+<table>
+    <tr>
+        <th>
+            FirstName
+        </th>
+        <th>
+            LastName
+        </th>
+        <th>
+            NickName
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        if (!(item.NickName.Equals("Admin")))
+        {
+            <tr>
+                <td>
+                    @item.FirstName
+                </td>
+                <td>
+                    @item.LastName
+                </td>
+                <td>
+                    @item.NickName
+                </td>
+            </tr>
+        }
+    }
+</table>

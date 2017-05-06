@@ -1,0 +1,18 @@
+@model _3NetEventManagerS.Models.ContributionType
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>ContributionType</legend>
+
+    <div class="display-label">Name</div>
+    <div class="display-field">@Model.Name</div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ContributionTypeId })
+</p>

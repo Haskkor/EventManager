@@ -1,0 +1,77 @@
+@model _3NetEventManagerS.Models.Event
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Name)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Name)
+    @Html.ValidationMessageFor(model => model.Name)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Address)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Address)
+    @Html.ValidationMessageFor(model => model.Address)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Description)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Description)
+    @Html.ValidationMessageFor(model => model.Description)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Date)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Date)
+    @Html.ValidationMessageFor(model => model.Date)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Time)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Time)
+    @Html.ValidationMessageFor(model => model.Time)
+</div>
+
+@if (Session["LoggedUserRole"].Equals("Admin"))
+{
+    <div class="editor-label">
+        @Html.LabelFor(model => model.CreatorId)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.CreatorId)
+        @Html.ValidationMessageFor(model => model.CreatorId)
+    </div>
+
+    <div class="editor-label">
+        EventStatus
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.EventStatusId, ((IEnumerable<_3NetEventManagerS.Models.EventStatus>) ViewBag.PossibleEventStatus).Select(option => new SelectListItem
+        {
+            Text = (option == null ? "None" : option.Name),
+            Value = option.EventStatusId.ToString(),
+            Selected = (Model != null) && (option.EventStatusId == Model.EventStatusId)
+        }), "Choose...")
+        @Html.ValidationMessageFor(model => model.EventStatusId)
+    </div>
+}    
+    
+<div class="editor-label">
+    EventType
+</div>
+<div class="editor-field">
+    @Html.DropDownListFor(model => model.EventTypeId, ((IEnumerable<_3NetEventManagerS.Models.EventType>)ViewBag.PossibleEventType).Select(option => new SelectListItem {
+        Text = (option == null ? "None" : option.Name), 
+        Value = option.EventTypeId.ToString(),
+        Selected = (Model != null) && (option.EventTypeId == Model.EventTypeId)
+    }), "Choose...")
+    @Html.ValidationMessageFor(model => model.EventTypeId)
+</div>

@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/Site.css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+    <body>
+        <div style="width: auto; background-color: #728ea7; text-align: center">
+            @if (Session["LoggedUserRole"] != null)
+            {
+                <strong>@Html.Encode("Welcome : " + Session["LoggedUserFirstname"] + " " + Session["LoggedUserLastName"])</strong>
+                <span> | </span>
+                @Html.ActionLink("Sign Out", "Logout", "Home")
+                <span> | </span>
+                @Html.ActionLink("User Manager", "UserManager",  "User", new { id = Session["LoggedUserId"] }, null)
+                <span> | </span>
+                @Html.ActionLink("Friends Management", "FindFriend", "User")
+                <span> | </span>
+                @Html.ActionLink("Events Management", "UserEvents", "Event", new { id = Session["LoggedUserId"] }, null)
+            }
+            else
+            {
+                @Html.ActionLink("Log In", "Index", "Home")
+                <span> | </span>
+                @Html.ActionLink("Register", "Register", "Home")
+            }
+        </div>
+        @if (Session["LoggedUserRole"] != null)
+        {
+            if (Session["LoggedUserRole"].Equals("Admin"))
+            {
+                <div style="width: auto; background-color: #ff4500; text-align: center">
+                    <strong>ADMIN PANEL</strong>
+                    <span> | </span>
+                    @Html.ActionLink("Users Management", "Index", "User")
+                    <span> | </span>
+                    @Html.ActionLink("Roles Management", "Index", "Role")
+                    <span> | </span>
+                    @Html.ActionLink("Events Management", "Index", "Event")
+                    <span> | </span>
+                    @Html.ActionLink("Event Statuses Management", "Index", "EventStatus")
+                    <span> | </span>
+                    @Html.ActionLink("Event Types Management", "Index", "EventType")
+                    <span> | </span>
+                    @Html.ActionLink("Contributions Management", "Index", "Contribution")
+                    <span> | </span>
+                    @Html.ActionLink("Contribution Types Management", "Index", "ContributionType")
+                </div>
+            }
+        }            
+        @RenderBody()
+
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>
